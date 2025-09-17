@@ -1,38 +1,62 @@
 /* styles/base.css */
 
-/* 全体のフォント、背景色、レイアウトなど */
+/*
+* このファイルは、サイト全体に共通して適用される、
+* 基本的なスタイルを定義します。
+* 例：ページ全体の背景、共通のフォント、ボタンのデザインなど。
+*/
+
+/*
+* bodyセレクタ：ウェブページ全体のスタイル
+*/
 body {
-    font-family: 'Arial', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #f0f8ff;
-    margin: 0;
+    font-family: 'Arial', sans-serif; /* 全体のフォントをArialに設定 */
+    display: flex;                   /* 子要素をFlexboxコンテナとして扱う */
+    justify-content: center;         /* 主軸（横方向）で子要素を中央に配置 */
+    align-items: center;             /* 交差軸（縦方向）で子要素を中央に配置 */
+    min-height: 100vh;               /* ページの最小の高さをビューポートの100%に設定 */
+    /* 背景をグラデーションに変更 */
+    background: linear-gradient(135deg, #f0f8ff, #e6f2ff); /* 淡い青のグラデーション背景 */
+    margin: 0;                       /* ページの周りの余白をなくす */
 }
 
-/* 共通のボタンデザイン */
+/*
+* 共通のボタンデザイン
+* problem-list, choices, return-button, reset-button に適用される
+*/
 .problem-list button,
 .choices button,
 .return-button,
 .reset-button {
-    display: block;
-    width: 100%;
-    margin-bottom: 15px;
-    padding: 15px;
-    font-size: 1rem;
-    font-weight: bold;
-    color: #fff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    display: block;                  /* ブロック要素として表示 */
+    width: 100%;                     /* 親要素の幅いっぱいに広げる */
+    margin-bottom: 15px;             /* 下に15pxの余白 */
+    padding: 15px;                   /* 内側に15pxの余白 */
+    font-size: 1rem;                 /* 標準的なフォントサイズ */
+    font-weight: bold;               /* 太字に設定 */
+    color: #fff;                     /* 文字色を白に */
+    background-color: #007bff;       /* 背景色を青に */
+    border: none;                    /* 枠線をなくす */
+    border-radius: 8px;              /* 角を丸くする */
+    cursor: pointer;                 /* マウスカーソルを指の形にする */
+    transition: all 0.2s ease;       /* 全てのプロパティの変化を0.2秒かけて滑らかに */
+    /* 立体感のある影とへこむ効果を追加 */
+    box-shadow: 0 4px 0 #0056b3;     /* 下に4pxの影（濃い青） */
+    transform: translateY(0);        /* 縦方向の初期位置を設定 */
 }
 
+/*
+* マウスカーソルがボタンの上に乗ったときのデザイン（ホバー効果）
+*/
 .problem-list button:hover,
 .choices button:hover,
 .return-button:hover,
 .reset-button:hover {
-    background-color: #0056b3;
+    background-color: #0056b3;       /* 背景色を少し濃くする */
+    /* ホバーで影を短くし、へこむように見せる */
+    box-shadow: 0 2px 0 #0056b3;     /* 影を2pxに */
+    transform: translateY(2px);      /* 縦に2px下に移動させる */
+
+    /* 注：このfont-familyはここではなくbodyに設定するのが適切です */
+    font-family: 'M PLUS Rounded 1c', sans-serif;
 }
