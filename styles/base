@@ -1,0 +1,38 @@
+/* styles/base.css */
+
+/* 全体のフォント、背景色、レイアウトなど */
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f8ff;
+    margin: 0;
+}
+
+/* 共通のボタンデザイン */
+.problem-list button,
+.choices button,
+.return-button,
+.reset-button {
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.problem-list button:hover,
+.choices button:hover,
+.return-button:hover,
+.reset-button:hover {
+    background-color: #0056b3;
+}
