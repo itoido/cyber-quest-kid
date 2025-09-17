@@ -1,0 +1,71 @@
+/* styles/game.css */
+
+/* ゲームコンテンツ全体をヘッダーの下に移動 */
+.game-container {
+    width: 90%;
+    max-width: 600px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-top: 80px; /* ヘッダーの高さ分、下にずらす */
+}
+
+h2 {
+    color: #1e90ff;
+    margin-bottom: 20px;
+}
+
+.scenario-text {
+    font-size: 1.2rem;
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.scenario-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+/* パネル用のスタイル */
+.panel-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+.panel {
+    width: 80px;
+    height: 80px;
+    border: 3px solid #ccc;
+    background-color: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: #fff;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.panel.unlocked {
+    border-color: #28a745;
+    background-color: #28a745;
+    color: #fff;
+    font-size: 3rem;
+}
+
+/* リセットボタンのスタイル */
+.reset-button {
+    margin-top: 20px;
+    background-color: #dc3545;
+}
+
+.reset-button:hover {
+    background-color: #c82333;
+}
