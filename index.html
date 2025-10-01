@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>子ども向けセキュリティ教育ゲーム</title>
     <link rel="stylesheet" href="styles/base.css">
-    <link rel="stylesheet" href="styles/header.css">
-    <link rel="stylesheet" href="styles/game.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500&display=swap" rel="stylesheet">
@@ -14,7 +12,7 @@
 <body>
     <header class="main-header">
         <div class="main-header-top">
-            <h1 class="team-name">TEAM XYZ</h1>
+            <h1 class="team-name">TEAM Hallucination</h1>
         </div>
         <div class="main-header-bottom">
             <div class="header-left">
@@ -26,13 +24,37 @@
                 <nav class="side-menu">
                     <button class="close-button" onclick="toggleMenu()">×</button>
                     <ul>
-                        <li><a href="#">はじめに</a></li>
-                        <li><a href="#">開発チームについて</a></li>
-                        <li><a href="#">遊び方</a></li>
+                        <li>
+                            <a href="#" onclick="toggleSubMenu('intro')">はじめに</a>
+                            <p id="intro-text" class="sub-menu-content">
+                                このサイトは、MWSCUP2025のハッカソン課題のために制作された、子供向けセキュリティ教育システムです。<br>
+                                問題を通して、ネットや攻撃者から自分を守る考え方を身に着けてもらうことが本サイトの目的です。
+                            </p>
+                        </li>
+                        <li>
+                            <a href="#" onclick="toggleSubMenu('about-team')">開発チームについて</a>
+                            <p id="about-team-text" class="sub-menu-content">
+                                開発チームは、チーム名「ハルシネーション」です。
+                            </p>
+                        </li>
+                        <li>
+                            <a href="#" onclick="toggleSubMenu('how-to-play')">遊び方</a>
+                            <p id="how-to-play-text" class="sub-menu-content">
+                                遊び方はシンプル！<br>
+                                1. 遊びたい問題を選びます。<br>
+                                2. 問題文を読んで、正しいと思う選択肢を選んでクリック！<br>
+                                3. 正解したり、問題を沢山クリアすると、トロフィーがもらえます。たくさん集めてみましょう！<br>
+                                ※「ランダムに始める」を選ぶと、自動でいくつかの問題をピックアップして挑戦できます。
+                            </p>
+                        </li>
+                        <li>
+                            <a href="#" onclick="showPage('glossary-page'); toggleMenu();">用語集</a>
+                        </li>
                     </ul>
                 </nav>
             </div>
             <div class="header-right">
+                <button class="trophy-button" onclick="showPage('trophy-page')">トロフィー</button>
                 <button class="home-button" onclick="showPage('home-page')">HOME</button>
             </div>
         </div>
@@ -41,17 +63,34 @@
     <main class="main-content">
         <section id="home-page" class="page">
             <div class="intro-container">
-                <h2>ハッカソン課題</h2>
-                <div class="divider"></div>
-                <p>このサイトでは、子どもたちがセキュリティインシデントに遭遇したときに、最良の行動を選択できるようになるための教育ゲームを提供しています。楽しく学びながら、デジタル社会を安全に過ごすための知識を身につけましょう。</p>
+                <h2>Cyber Quest-kid</h2>
+                <p>このサイトでは、子どもたちがセキュリティインシデントに遭遇したときに、最良の行動を選択できるようになるための教育ゲームを提供しています。<br>
+                   楽しく学びながら、デジタル社会を安全に過ごすための知識を身につけましょう。</p>
                 <p>※ゲームの記録はブラウザに保存されるため、何度でも続きからプレイできます。記録を消したい場合は、「ゲームをリセット」ボタンを押してください。</p>
             </div>
             <div class="game-container">
-                <h2>問題を選んでね</h2>
-                <div class="problem-list"></div>
-                <h2 style="margin-top: 40px;">ごほうびパネル</h2>
-                <div class="panel-container"></div>
-                <button class="return-button reset-button" onclick="resetGameData()">ゲームをリセット</button>
+                <div class="home-layout-container">
+                    <div class="home-section-left">
+                        <h2>問題リスト</h2>
+                        <div class="problem-list"></div>
+                    </div>
+                    
+                    <div class="home-section-right">
+                        <h2>挑戦してみよう！</h2>
+                        <div class="home-buttons">
+                            <button id="random-start-button" class="random-start-button" onclick="startRandomQuiz()">ランダム問題に挑戦！</button>
+                            <button id="review-mode-button" class="review-mode-button" onclick="showReviewProblemList()">まちがった問題を解きなおそう！</button>
+                            <h2>※リセット※</h2>
+                            <button class="return-button reset-button" onclick="confirmReset()">ゲームをリセット</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-problem-list" style="display: none;">
+                        <h2>復習問題リスト</h2>
+                        <div id="review-list-container"></div>
+                        <hr class="divider">
+                        <button class="return-button" onclick="showPage('home-page')">ホームに戻る</button>
+                </div>
             </div>
         </section>
 
@@ -67,8 +106,27 @@
         <section id="result-page" class="page" style="display: none;">
             <div class="game-container">
                 <h2>結果</h2>
+                <p class="evaluation-label"></p>
+                <p class="final-result-text"></p>
                 <img class="scenario-image" src="" alt="結果の画像">
                 <p class="scenario-text"></p>
+                <div class="explanation"></div>
+                <button class="return-button"></button>
+            </div>
+        </section>
+        
+        <section id="trophy-page" class="page" style="display: none;">
+            <div class="game-container">
+                <h2>トロフィー一覧</h2>
+                <div id="trophy-list-container"></div>
+                <button class="return-button" onclick="showPage('home-page')">ホームに戻る</button>
+            </div>
+        </section>
+
+        <section id="glossary-page" class="page" style="display: none;">
+            <div class="game-container">
+                <h2>用語集</h2>
+                <div id="glossary-list-container"></div>
                 <button class="return-button" onclick="showPage('home-page')">ホームに戻る</button>
             </div>
         </section>
