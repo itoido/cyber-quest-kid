@@ -1,62 +1,488 @@
-/* styles/base.css */
-
 /*
-* このファイルは、サイト全体に共通して適用される、
-* 基本的なスタイルを定義します。
-* 例：ページ全体の背景、共通のフォント、ボタンのデザインなど。
+* このファイルは、既存のデザインを改良し、
+* より洗練されたスタイルを定義します。
 */
 
-/*
-* bodyセレクタ：ウェブページ全体のスタイル
-*/
+/* ==================================== */
+/* 0. 基本設定 (body) */
+/* ==================================== */
 body {
-    font-family: 'Arial', sans-serif; /* 全体のフォントをArialに設定 */
-    display: flex;                   /* 子要素をFlexboxコンテナとして扱う */
-    justify-content: center;         /* 主軸（横方向）で子要素を中央に配置 */
-    align-items: center;             /* 交差軸（縦方向）で子要素を中央に配置 */
-    min-height: 100vh;               /* ページの最小の高さをビューポートの100%に設定 */
-    /* 背景をグラデーションに変更 */
-    background: linear-gradient(135deg, #f0f8ff, #e6f2ff); /* 淡い青のグラデーション背景 */
-    margin: 0;                       /* ページの周りの余白をなくす */
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+    margin: 0;
+    padding-top: 80px;
+    box-sizing: border-box;
 }
 
-/*
-* 共通のボタンデザイン
-* problem-list, choices, return-button, reset-button に適用される
-*/
+/* ==================================== */
+/* 1. ヘッダー */
+/* ==================================== */
+.main-header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.main-header-top {
+    background-color: #0d47a1;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+.main-header-top .team-name {
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.main-header-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px 20px;
+}
+
+.header-left, .header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.trophy-button,
+.home-button {
+    font-size: 1rem;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.trophy-button {
+    background-color: #ffca28;
+    color: #333;
+}
+
+.trophy-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.home-button {
+    background-color: #42a5f5;
+    color: #fff;
+}
+
+.home-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.menu-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    position: relative;
+    z-index: 10001;
+}
+
+/* ハンバーガーメニューの3本の線 */
+.menu-button span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin-bottom: 5px;
+    border-radius: 3px;
+    transition: all 0.3s;
+}
+
+.menu-button:hover span {
+    background-color: #000;
+}
+
+/* ==================================== */
+/* 2. サイドメニュー */
+/* ==================================== */
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.85);
+    padding-top: 80px;
+    transition: left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 10000;
+    overflow-y: auto;
+}
+
+.side-menu.open {
+    left: 0;
+}
+
+.side-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.side-menu ul li a {
+    display: block;
+    padding: 20px 30px;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    font-size: 1.2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.side-menu ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2rem;
+    color: #fff;
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.side-menu .sub-menu-content {
+    display: none;
+    padding: 15px 25px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    margin: 5px 0 0 0;
+    border-radius: 8px;
+    font-size: 1em;
+}
+
+.side-menu .sub-menu-content.visible {
+    display: block;
+}
+
+
+.glossary-item {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: left;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.glossary-term {
+    font-size: 1.5rem;
+    color: #0d47a1;
+    margin: 0 0 10px;
+}
+
+.glossary-description {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ==================================== */
+/* 3. ゲームコンテンツコンテナ */
+/* ==================================== */
+.game-container {
+    width: 90%;
+    max-width: 1200px;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 25px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    margin: 20px auto;
+}
+
+.intro-container {
+    width: 100%;
+    max-width: none;
+    /* ヘッダーの高さ＋少しの余白分を確保 */
+    margin-top: 100px;
+    margin-bottom: 20px;
+    padding: 0 20px;
+    text-align: left;
+    font-size: 1.2rem;
+}
+
+.problem-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 15px;
+}
+
+/* styles.css */
+
+/* ==================================== */
+/* 3.1. ホームページの二分割レイアウト */
+/* ==================================== */
+
+.home-layout-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.home-section-left,
+.home-section-right {
+    flex: 1;
+    padding: 30px;
+    background-color: #f1f8e9;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.home-section-left {
+    text-align: center; /* 左側セクションも中央揃えに */
+}
+
+.home-section-right {
+    text-align: center;
+}
+
+/* ==================================== */
+/* 4. タイトルとテキスト */
+/* ==================================== */
+h2 {
+    color: #0d47a1; /* 深い青色 */
+    margin-bottom: 25px;
+    border-bottom: 3px solid #0d47a1; /* 下線を太く */
+    text-align: center; /* h2を中央揃えに統一 */
+    padding-bottom: 8px;
+    width: 100%; /* 下線を幅いっぱいに広げる */
+}
+
+.scenario-text {
+    font-size: 1.2rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 12px;
+    border-left: 5px solid #0d47a1;
+}
+
+/* ==================================== */
+/* 5. 共通ボタンのベーススタイル */
+/* ==================================== */
+.problem-list button,
+.choices button,
+.return-button,
+.reset-button,
+.random-start-button,
+.review-mode-button {
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 18px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 0 #002e7b;
+    transform: translateY(0);
+}
+
 .problem-list button,
 .choices button,
 .return-button,
 .reset-button {
-    display: block;                  /* ブロック要素として表示 */
-    width: 100%;                     /* 親要素の幅いっぱいに広げる */
-    margin-bottom: 15px;             /* 下に15pxの余白 */
-    padding: 15px;                   /* 内側に15pxの余白 */
-    font-size: 1rem;                 /* 標準的なフォントサイズ */
-    font-weight: bold;               /* 太字に設定 */
-    color: #fff;                     /* 文字色を白に */
-    background-color: #007bff;       /* 背景色を青に */
-    border: none;                    /* 枠線をなくす */
-    border-radius: 8px;              /* 角を丸くする */
-    cursor: pointer;                 /* マウスカーソルを指の形にする */
-    transition: all 0.2s ease;       /* 全てのプロパティの変化を0.2秒かけて滑らかに */
-    /* 立体感のある影とへこむ効果を追加 */
-    box-shadow: 0 4px 0 #0056b3;     /* 下に4pxの影（濃い青） */
-    transform: translateY(0);        /* 縦方向の初期位置を設定 */
+    background-color: #0d47a1;
 }
 
-/*
-* マウスカーソルがボタンの上に乗ったときのデザイン（ホバー効果）
-*/
 .problem-list button:hover,
 .choices button:hover,
 .return-button:hover,
-.reset-button:hover {
-    background-color: #0056b3;       /* 背景色を少し濃くする */
-    /* ホバーで影を短くし、へこむように見せる */
-    box-shadow: 0 2px 0 #0056b3;     /* 影を2pxに */
-    transform: translateY(2px);      /* 縦に2px下に移動させる */
+.reset-button:hover,
+.random-start-button:hover,
+.review-mode-button:hover {
+    box-shadow: 0 2px 0 #002e7b;
+    transform: translateY(2px);
+}
 
-    /* 注：このfont-familyはここではなくbodyに設定するのが適切です */
-    font-family: 'M PLUS Rounded 1c', sans-serif;
+/* ==================================== */
+/* 6. 特殊なボタンの色とホバー効果 */
+/* ==================================== */
+.random-start-button {
+    background-color: #ff9800; /* 鮮やかなオレンジ色 */
+    box-shadow: 0 4px 0 #ef6c00;
+}
+
+.random-start-button:hover {
+    background-color: #ef6c00;
+    box-shadow: 0 2px 0 #ef6c00;
+}
+
+.review-mode-button {
+    background-color: #6a1b9a; /* 紫色 */
+    box-shadow: 0 4px 0 #4a148c;
+}
+
+.review-mode-button:hover {
+    background-color: #4a148c;
+    box-shadow: 0 2px 0 #4a148c;
+}
+
+.reset-button {
+    background-color: #dc3545;
+    box-shadow: 0 4px 0 #c82333;
+}
+
+.reset-button:hover {
+    box-shadow: 0 2px 0 #c82333;
+}
+
+/* 評価別ボタンデザイン */
+.choices button.evaluation-good,
+.choices button.evaluation-average,
+.choices button.evaluation-bad {
+    background-color: #0d47a1;
+    box-shadow: 0 4px 0 #002e7b;
+    transform: translateY(0);
+}
+
+/* ホバー時のスタイルを統一 */
+.choices button.evaluation-good:hover,
+.choices button.evaluation-average:hover,
+.choices button.evaluation-bad:hover {
+    background-color: #0d47a1;
+    box-shadow: 0 2px 0 #002e7b;
+    transform: translateY(2px);
+}
+
+/* ==================================== */
+/* 7. トロフィーページ */
+/* ==================================== */
+/* トロフィーページのゲームコンテナのスタイル */
+#trophy-page .game-container {
+    /* コンテナの最大幅を1200pxに設定 */
+    max-width: 1200px;
+    width: 800px;
+    /* パディングとボーダーを幅に含める */
+    box-sizing: border-box;
+    /* 左右の余白を自動調整して中央に配置 */
+    margin: 20px auto;
+}
+
+#trophy-list-container {
+    /* 親要素の幅いっぱいに広げる */
+    width: 100%;
+}
+
+.trophy {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background-color: #f5f5f5;
+    border-radius: 15px;
+    padding: 20px;
+    /* 親コンテナの幅いっぱいに広げる */
+    width: 100%;
+    /* max-widthの制限を削除 */
+    max-width: none;
+    /* 左右の余白を自動調整して中央に配置 */
+    margin: 0 auto 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    text-align: left;
+    /* パディングとボーダーを幅に含める */
+    box-sizing: border-box;
+}
+
+.trophy.unlocked {
+    background-color: #fffde7; /* 解放されたトロフィーの背景色を明るく */
+    box-shadow: 0 6px 12px rgba(255, 215, 0, 0.4);
+}
+
+.trophy-icon {
+    font-size: 4rem;
+    line-height: 1;
+}
+
+.trophy-info {
+    flex-grow: 1;
+}
+
+.trophy-title {
+    font-weight: bold;
+    color: #333;
+    font-size: 1.2rem;
+    margin: 0 0 5px;
+}
+
+.trophy-description {
+    font-size: 1rem;
+    color: #777;
+    margin: 0;
+}
+
+.review-problem-list button {
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 18px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #ff9800; /* 復習モードボタンの色 */
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 0 #ef6c00;
+    transform: translateY(0);
+}
+
+.review-problem-list button:hover {
+    box-shadow: 0 2px 0 #ef6c00;
+    transform: translateY(2px);
+}
+
+/* ホームに戻るボタンの色を青に修正 */
+.review-problem-list .return-button {
+    background-color: #0d47a1; /* 明るい青 */
+    box-shadow: 0 4px 0 #002e7b;
+}
+
+.review-problem-list .return-button:hover {
+    background-color: #0d47a1;
+    box-shadow: 0 2px 0 #002e7b;
+    transform: translateY(2px);
+}
+
+.divider {
+    border: 0;
+    height: 3px; /* h2の下線と同じ太さ（3px）に設定 */
+    background-color: #0d47a1; /* h2の下線と同じ色に設定 */
+    margin: 20px auto; /* 左右中央に配置 */
+    width: 100%; /* 幅を調整して見た目を整える */
 }
